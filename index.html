@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أرشيف الشغل</title>
+<meta name="theme-color" content="#1f3864">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="أرشيف الشغل">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- تسجيل الدخول -->
+<div id="login" class="login hidden">
+  <div class="box f">
+    <h1>أرشيف الشغل</h1>
+    <p>الأجهزة، الزبائن، الصيانة، والصور</p>
+    <div id="lgFormIn">
+      <label>الإيميل</label>
+      <input id="lgEmail" type="email" dir="ltr" autocomplete="username" inputmode="email">
+      <label>كلمة السر</label>
+      <input id="lgPass" type="password" autocomplete="current-password">
+      <button class="btn pri block" style="margin-top:16px" id="lgBtn">دخول</button>
+      <div class="lnk" id="toSignup">ما عندك حساب؟ سجّل حساب جديد</div>
+      <div class="lnk" id="toReset" style="font-weight:400;color:var(--muted)">نسيت كلمة السر</div>
+    </div>
+    <div id="lgFormUp" class="hidden">
+      <label>اسمك (يظهر بسجل التعديلات)</label>
+      <input id="suName" autocomplete="name" placeholder="مثلاً: علي">
+      <label>الإيميل</label>
+      <input id="suEmail" type="email" dir="ltr" autocomplete="username" inputmode="email">
+      <label>كلمة السر (8 أحرف أو أكثر)</label>
+      <input id="suPass" type="password" autocomplete="new-password">
+      <button class="btn pri block" style="margin-top:16px" id="suBtn">إنشاء الحساب</button>
+      <div class="lnk" id="toLogin">عندي حساب، رجوع للدخول</div>
+    </div>
+    <div class="err" id="lgErr"></div>
+  </div>
+</div>
+
+<!-- بانتظار الموافقة -->
+<div id="pending" class="login hidden">
+  <div class="box pend">
+    <div class="big">⏳</div>
+    <h1>حسابك بانتظار الموافقة</h1>
+    <p id="pendWho"></p>
+    <p>المدير لازم يوافق على حسابك ويحدد صلاحيتك (عرض أو تعديل). بعدها اضغط «تحقق مرة ثانية».</p>
+    <button class="btn pri block" id="pendCheck">تحقق مرة ثانية</button>
+    <div class="lnk" id="pendOut">تسجيل خروج</div>
+  </div>
+</div>
+
+<!-- الإعداد غير مكتمل -->
+<div id="noconfig" class="login hidden">
+  <div class="box pend"><div class="big">⚙️</div><h1>الإعداد غير مكتمل</h1>
+    <p>ملف config.js ما بيه عنوان Supabase أو المفتاح.</p></div>
+</div>
+
+<!-- التطبيق -->
+<div id="app" class="hidden">
+  <div class="top">
+    <h1 id="topTitle">أرشيف الشغل</h1>
+    <span class="badge" id="modeBadge"></span>
+    <button class="iconbtn hidden" id="installBtn" title="تثبيت التطبيق">📲</button>
+    <button class="iconbtn" title="تحديث" id="refreshBtn">⟳</button>
+    <button class="iconbtn hidden" id="adminBtn" title="المستخدمين والسجل">👥</button>
+    <button class="iconbtn" title="خروج" id="logoutBtn">⎋</button>
+  </div>
+  <div id="offline" class="offline hidden">ما كو إنترنت. تشوف آخر بيانات محفوظة، والحفظ متوقف.</div>
+  <div class="wrap" id="view"></div>
+  <div class="nav"><div class="in" id="nav"></div></div>
+</div>
+
+<div id="ovl"></div>
+<div id="toastBox"></div>
+<div id="loader" class="load hidden"><div class="spin"></div><div class="msg" id="loaderMsg"></div></div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/dist/umd/supabase.js" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>
